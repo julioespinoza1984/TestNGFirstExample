@@ -1,16 +1,20 @@
 package edu.jespinoza.testng;
 
+import edu.jespinoza.testng.impl.McdCalculatorImpl;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class McdCalculatorTest {
     @Test
     public void testGetMcd(){
-        McdCalculator calc = new McdCalculator();
+        McdCalculator calc = McdCalculatorImpl.getInstance();
         Assert.assertEquals(calc.getMcd(0, 0), 0);
         Assert.assertEquals(calc.getMcd(0, 30), 30);
+        Assert.assertNotEquals(calc.getMcd(0, 30), 0);
         Assert.assertEquals(calc.getMcd(15, 0), 15);
+        Assert.assertNotEquals(calc.getMcd(15, 0), 0);
         Assert.assertEquals(calc.getMcd(15, 30), 15);
+        Assert.assertNotEquals(calc.getMcd(15, 30), 30);
         Assert.assertEquals(calc.getMcd(8, 12), 4);
         Assert.assertEquals(calc.getMcd(9, 18), 9);
         Assert.assertEquals(calc.getMcd(20, 16), 4);
@@ -37,5 +41,6 @@ public class McdCalculatorTest {
         Assert.assertEquals(calc.getMcd(65880, 92415), 915);
         Assert.assertEquals(calc.getMcd(1002001, 2136134), 11011);
         Assert.assertEquals(calc.getMcd(4008004, 4280276), 4004);
+        Assert.assertNotEquals(calc.getMcd(4008004, 4280276), 4003);
     }
 }
